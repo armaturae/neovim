@@ -2,7 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Show line numbers
-set number
+set number relativenumber
+set wrap
+set matchtime=10
 
 " Syntax and colorscheme
 syntax on
@@ -37,51 +39,47 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi'
 Plug 'ryanoasis/vim-devicons'
-Plug 'dracula/vim', { 'as': 'dracula' }
-" Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'bling/vim-airline'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Yggdroot/indentLine'
-" Plug 'kien/ctrlp.vim'
-" Plug 'ap/vim-buftabline'
 Plug 'plasticboy/vim-markdown'
-Plug 'godlygeek/tabular'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'jvirtanen/vim-hcl'
-
-" FZF and display mode
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
 Plug 'francoiscabrol/ranger.vim'
 
-" Terraform
+" Terraform and Hashicorp
 Plug 'hashivim/vim-terraform'
+Plug 'jvirtanen/vim-hcl'
 
 " LanguageCliemt-neovim
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'neovimhaskell/haskell-vim'
 Plug 'rhysd/vim-grammarous'
 Plug 'tpope/vim-surround'
-Plug 'chrisbra/csv.vim'
-Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
+
+
+"" Dracula
+colorscheme dracula
+
+
 " =========================================================
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo -----------------------------------
 
 let g:dracula_italic = 0
-colorscheme dracula
 highlight Normal ctermbg=None
 
 """ fzf config
@@ -94,13 +92,6 @@ endif
 """
 
 
-"-----------------
-" Bind JSON to different colorscheme
-" autocmd BufEnter *.json colorscheme default
-" Vim-JSON plugin
-" let g:vim_json_syntax_conceal = 0
-" au BufRead,BufNewFile,BufReadPost *.json set syntax=json
-"------------------
 
 "
 ""
@@ -116,6 +107,7 @@ endif
 " Nerdtree configuration 
 "
 " Ctrl + n for nerdtree toggle
+
 map <C-n> :NERDTreeToggle<CR>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -161,18 +153,10 @@ let g:NERDTreeExtensionHighlightColor['py'] = s:blue" sets the color of css file
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
 
-""""""
-" Rainbow parenthasis
-"
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
-
+""""""""""
 """""
-" Scheme indent
-"
-autocmd filetype lisp,scheme,art setlocal equalprg=scmindent.rkt
+""
+
 
 let g:deoplete#enable_at_startup = 1
 
@@ -184,8 +168,13 @@ let g:LanguageClient_serverCommands = {
     \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
     \ }
 
+
+""""""""""""""""
+" LanguageServer
+"
+let g:LanguageClient_settingsPath = system("printf $HOME") + '/.config/nvim/settings.json'
+
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = '/Users/Avrahami/.config/nvim/settings.json'
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
@@ -196,14 +185,13 @@ nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 let b:ale_linters = ['pylint', 'hlint', 'ghc-mod']
+""""""""""""""""
 
-""""""
+
+""""""""""
 " Markdown
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_disabled = 1
-"let g:lightline = {
-"  \ 'colorscheme': 'onedark',
-"  \ }
 au BufNewFile,BufRead Jenkinsfile setf groovy
 
 """"""
