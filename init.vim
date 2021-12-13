@@ -35,13 +35,11 @@ let g:python_host_prog = substitute(system("which python2"), '\n', '', 'g')
 let g:python3_host_prog = substitute(system("which python3"), '\n', '', 'g')
 
 call plug#begin('~/.vim/plugged')
-Plug 'Shougo/deoplete.nvim'
-Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'bling/vim-airline'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -57,10 +55,10 @@ Plug 'hashivim/vim-terraform'
 Plug 'jvirtanen/vim-hcl'
 
 " LanguageCliemt-neovim
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'neovimhaskell/haskell-vim'
@@ -163,26 +161,27 @@ let g:deoplete#enable_at_startup = 1
 
 let g:Powerline_symbols = 'fancy'
 
-let g:LanguageClient_serverCommands = {
-    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-    \ }
-
 
 """"""""""""""""
 " LanguageServer
+" 
+" let g:LanguageClient_serverCommands = {
+"     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+"     \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+"     \ }
+" 
 "
-let g:LanguageClient_settingsPath = system("printf $HOME") + '/.config/nvim/settings.json'
-
-let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient_textDocument_rangeFormatting()
-
-nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
-nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" let g:LanguageClient_settingsPath = system("printf $HOME") + '/.config/nvim/settings.json'
+" 
+" let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+" set completefunc=LanguageClient#complete
+" set formatexpr=LanguageClient_textDocument_rangeFormatting()
+" 
+" nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
+" nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 let b:ale_linters = ['pylint', 'hlint', 'ghc-mod']
 """"""""""""""""
