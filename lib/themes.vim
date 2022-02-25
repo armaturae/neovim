@@ -1,0 +1,2 @@
+"" Dracula
+colorscheme dracula

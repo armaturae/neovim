@@ -1,75 +1,16 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" Show line numbers
-set number relativenumber
-set wrap
-set matchtime=10
+let s:core_conf_files = [
+      \ 'plugins.vim',
+      \ 'options.vim',
+      \ 'variables.vim',
+      \ 'autocmds.vim',
+      \ 'mappings.vim',
+      \ 'themes.vim',
+      \ ]
 
-" Syntax and colorscheme
-syntax on
-
-" Tab behavior
-set expandtab
-set tabstop=4
-set scrolloff=25
-
-" set t_Co=256
-"
-set backspace=indent,eol,start
-set clipboard=unnamed
-set guifont=DroidMono\ Nerd\ Font\ Mono:h16
-
-set hidden
-nnoremap <C-L> :bnext<CR>
-nnoremap <C-H> :bprev<CR>
-nnoremap <C-;> :bd<CR>
-
-"
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set termguicolors
-"
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-let g:python_host_prog = substitute(system("which python2"), '\n', '', 'g')
-let g:python3_host_prog = substitute(system("which python3"), '\n', '', 'g')
-
-call plug#begin('~/.vim/plugged')
-Plug 'davidhalter/jedi'
-Plug 'ryanoasis/vim-devicons'
-Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'bling/vim-airline'
-Plug 'dense-analysis/ale'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Yggdroot/indentLine'
-Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'francoiscabrol/ranger.vim'
-
-" Terraform and Hashicorp
-Plug 'hashivim/vim-terraform'
-Plug 'jvirtanen/vim-hcl'
-
-" LanguageCliemt-neovim
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'neovimhaskell/haskell-vim'
-Plug 'rhysd/vim-grammarous'
-Plug 'tpope/vim-surround'
-
-call plug#end()
-
-
-"" Dracula
-colorscheme dracula
+for s:fname in s:core_conf_files
+  execute printf('source %s/lib/%s', stdpath('config'), s:fname)
+endfor
 
 
 " =========================================================
@@ -77,34 +18,8 @@ colorscheme dracula
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo -----------------------------------
 
-let g:dracula_italic = 0
 highlight Normal ctermbg=None
 
-""" fzf config
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-if has('nvim') && !exists('g:fzf_layout')
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-endif
-"""
-
-
-
-"
-""
-"""
-""""
-"""""
-""""""
-"""""""
-" ===========================================
-
-" Python path for neovim
-
-" Nerdtree configuration 
-"
-" Ctrl + n for nerdtree toggle
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -150,41 +65,6 @@ let g:NERDTreeExtensionHighlightColor['py'] = s:blue" sets the color of css file
 
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
-
-""""""""""
-"""""
-""
-
-
-let g:deoplete#enable_at_startup = 1
-
-
-let g:Powerline_symbols = 'fancy'
-
-
-""""""""""""""""
-" LanguageServer
-" 
-" let g:LanguageClient_serverCommands = {
-"     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-"     \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-"     \ }
-" 
-"
-" let g:LanguageClient_settingsPath = system("printf $HOME") + '/.config/nvim/settings.json'
-" 
-" let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-" set completefunc=LanguageClient#complete
-" set formatexpr=LanguageClient_textDocument_rangeFormatting()
-" 
-" nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
-" nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-let b:ale_linters = ['pylint', 'hlint', 'ghc-mod']
-""""""""""""""""
 
 
 """"""""""
