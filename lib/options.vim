@@ -25,6 +25,8 @@ set fileencodings=utf-8,big5,euc-jp,latin1
 
 " Backup
 set backup
+let g:backupdir=expand(stdpath('config'), '/backup//')
+let &backupdir=g:backupdir
 
 " set t_Co=256
 set backspace=indent,eol,start
