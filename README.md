@@ -1,6 +1,10 @@
 # Neovim Configuration
 
 ## Requirements
+
+* fzf
+* ctags
+* terraform-ls
 * vim-plug
 * [autozimu/LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)
 

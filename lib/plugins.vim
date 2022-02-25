@@ -9,7 +9,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Yggdroot/indentLine'
 Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
@@ -29,6 +28,9 @@ call plug#end()
 
 " Dracula variables
 let g:dracula_italic = 0
+
+" CoC
+let g:coc_global_extensions = ['coc-json', 'coc-markdownlint', 'coc-vimlsp', 'coc-lists']
 
 "" fzf
 
