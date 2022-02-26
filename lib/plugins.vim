@@ -24,10 +24,8 @@ Plug 'rhysd/vim-grammarous'
 
 " Language server
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf'
 call plug#end()
-
-" Dracula variables
-let g:dracula_italic = 0
 
 " CoC
 let g:coc_global_extensions = ['coc-json', 'coc-markdownlint', 'coc-vimlsp', 'coc-lists']
