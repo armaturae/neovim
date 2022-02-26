@@ -22,3 +22,4 @@ nnoremap <silent> <space>p       :<C-u>CocFzfListResume<CR>
 " FZF
 nnoremap <silent> <space>f       :GFiles<CR>
 nnoremap <silent> <space>g       :Rg<CR>
+nnoremap <silent> <space>t       :Tags<CR>

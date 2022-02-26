@@ -1,4 +1,6 @@
 " Plugins installation and configuration
+"
+
 
 call plug#begin('~/.vim/plugged')
 Plug 'ryanoasis/vim-devicons'
@@ -27,6 +29,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 call plug#end()
 
+filetype plugin indent on
+
 " CoC
 let g:coc_global_extensions = ['coc-json', 'coc-markdownlint', 'coc-vimlsp', 'coc-lists']
 
@@ -35,6 +39,7 @@ let g:coc_global_extensions = ['coc-json', 'coc-markdownlint', 'coc-vimlsp', 'co
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_tags_command = 'ctags -R -t .tags'
 
 " fzf layout config
 if has('nvim') && !exists('g:fzf_layout')
@@ -92,18 +97,7 @@ let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
 
 " Nerdtree change directory
-call NERDTreeAddKeyMap({
-            \ 'key':           '_C',
-            \ 'callback':      'NERDTreeEnterDirectoryAndCD',
-            \ 'quickhelpText': 'Enter directory and cd into it' })
-
-function! NERDTreeEnterDirectoryAndCD()
-  let node = g:NERDTreeDirNode.GetSelected()
-
-  exec 'cd ' . node.path.str({'format': 'Cd'})
-  NERDTreeCWD
-endfunction
-
+let g:NERDTreeChDirMode = 2
 
 """"""""""
 " Markdown
