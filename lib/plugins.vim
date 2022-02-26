@@ -24,7 +24,7 @@ Plug 'rhysd/vim-grammarous'
 
 " Language server
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf'
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 call plug#end()
 
 " CoC
@@ -90,6 +90,19 @@ let g:NERDTreeExtensionHighlightColor['py'] = s:blue" sets the color of css file
 
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+
+" Nerdtree change directory
+call NERDTreeAddKeyMap({
+            \ 'key':           '_C',
+            \ 'callback':      'NERDTreeEnterDirectoryAndCD',
+            \ 'quickhelpText': 'Enter directory and cd into it' })
+
+function! NERDTreeEnterDirectoryAndCD()
+  let node = g:NERDTreeDirNode.GetSelected()
+
+  exec 'cd ' . node.path.str({'format': 'Cd'})
+  NERDTreeCWD
+endfunction
 
 
 """"""""""
