@@ -25,11 +25,9 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'rhysd/vim-grammarous'
 
 " Language server
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 call plug#end()
-
-filetype plugin indent on
 
 " CoC
 let g:coc_global_extensions = ['coc-json', 'coc-markdownlint', 'coc-vimlsp', 'coc-lists']
