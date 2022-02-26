@@ -34,6 +34,7 @@ let g:coc_global_extensions = ['coc-json', 'coc-markdownlint', 'coc-vimlsp', 'co
 
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 
 " fzf layout config
 if has('nvim') && !exists('g:fzf_layout')
