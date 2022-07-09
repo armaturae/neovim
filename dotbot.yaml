@@ -1,0 +1,17 @@
+- defaults:
+    link:
+        relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.config/nvim/init.vim: init.vim
+    ~/.config/nvim/lib: lib
+    ~/.config/nvim/coc-settings.json: coc/coc-settings.json
+    ~/.local/share/nvim/site/autoload/plug.vim: vim-plug/plug.vim
+
+- create:
+    - ~/.config/
+    - ~/.config/nvim/
+    - ~/.config/nvim/backup/
+    - ~/.local/share/nvim/site/autoload/
