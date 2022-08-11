@@ -5,7 +5,7 @@
         "args": ["serve"],
         "filetypes": [
             "terraform",
-            "tf",
+            "tf"
             ],
         "initializationOptions": {},
         "settings": {}
